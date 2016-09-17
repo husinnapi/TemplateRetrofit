@@ -44,21 +44,13 @@ public class MainActivity extends AppCompatActivity {
     private List<User.ItemsBean> users;
     private RecyclerView.LayoutManager layoutManager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        settToolbarView();
+        setFabView();
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
@@ -96,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onResponse: " + users.size());
                 adapter = new UserAdapter(users);
 
-////                Attach Adapter to recyclerview
+//                Attach Adapter to recyclerview
                 layoutManager = new LinearLayoutManager(getApplicationContext());
                 recyclerView.setLayoutManager(layoutManager);
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -111,6 +103,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void setFabView() {
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+    }
+
+    private void settToolbarView() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
     @Override
